@@ -1,0 +1,41 @@
+<div class="nested-fields">
+<%- if @receipt.customer %>
+
+<div class="field">
+<%= form.label :cus_name %>
+<%= form.text_field :cus_name,:value => @receipt.customer.name %>
+</div>
+<div class="field">
+<%= form.label :cus_address %>
+<%= form.text_field :cus_address,:value => @receipt.customer.address %>
+</div>
+<div class="field">
+<%= form.label :cus_order_id %>
+<%= form.text_field :cus_order_id,:value => @receipt.customer.order_id %>
+</div>
+<div class="field">
+<%= form.label :cus_payment_method %>
+<%= form.text_field :cus_payment_method ,:value => @receipt.customer.payment_method %>
+</div>
+<%- else %>
+
+<div class="field">
+<%= form.label :cus_name %>
+<%= form.text_field :cus_name%>
+</div>
+<div class="field">
+<%= form.label :cus_address %>
+<%= form.text_field :cus_address %>
+</div>
+<div class="field">
+<%= form.label :cus_order_id %>
+<%= form.text_field :cus_order_id %>
+</div>
+<div class="field">
+<%= form.label :cus_payment_method %>
+<%= form.text_field :cus_payment_method%>
+</div>
+
+<% end %>
+
+</div>

@@ -1,0 +1,150 @@
+<div class="recipt_sec">
+<div class="recipt_iiner_sec">
+<p id="notice"><%= notice %></p>
+<h3>Wolt Delivery Receipt</h3>
+<p><%= @receipt.seller.created_at.strftime("%d.%m.%Y") %></p>
+</div>
+
+<div class="receipt_table_sec">
+<table border-collapse: "collapse" cellpadding="0"  cellspacing="0"
+    <tr>
+      <th>ITEM</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @receipt.items.each do |item| %>
+      <tr>
+        <td><%= item.name %> (<%= item.qty %>)</td>
+        <td><%= (item.qty.to_i)*(item.cost.to_i) %></td>
+
+        
+      </tr>
+    <% end %>
+    <tr>
+      <td >Subtotal excl. VAT</td>
+      <td>0.08</td>
+    </tr>
+    <tr>
+      <td >VAT 20% </td>
+      <td>0.08</td>
+    </tr>
+    <tr class="total_Sesc">
+      <td>Total </td>
+
+      <td><%= @receipt.items.map(&:total_price).reduce(0, :+) %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br />
+<div class="seller_details_sec">
+<h4>Seller Details</h4>
+<p>date and time : <span> <%= @receipt.seller.created_at.strftime("%A %d %^b %T %Y") %> </span> </p><bt />
+
+<p><strong>Seller : </strong> <span> <%= @receipt.seller.name %> </span> </p><bt />
+<p><strong>VAT ID : </strong> <span> <%= @receipt.seller.vat_id %> </span> </p><bt />
+<p><strong>Business ID : </strong> <span> <%= @receipt.seller.business_id %> </span> </p><bt />
+<p><strong>Address : </strong> <span> <%= @receipt.seller.address %> </span> </p><bt />
+
+<br />
+<h4>Customer details</h4>
+
+<p><strong>Customer : </strong> <span> <%= @receipt.customer.name %> </span> </p><bt />
+<p><strong>Payment method : </strong> <span> <%= @receipt.customer.payment_method %> </span> </p><bt />
+<p><strong>Order ID : </strong> <span> <%= @receipt.customer.order_id %> </span> </p><bt />
+<p><strong>Delivery Address : </strong> <span> <%= @receipt.customer.address %> </span> </p><bt />
+</div>
+<div class="recipt_btn">
+<%= link_to 'Edit', edit_receipt_path(@receipt) %> |
+<%= link_to 'Back', receipts_path %>
+</div>
+</div>
+
+<style>
+.recipt_sec .recipt_iiner_sec {
+    text-align: center;
+}
+.recipt_sec .recipt_iiner_sec h3 {
+    font-size: 25px;
+    font-weight: 900;
+}
+.recipt_sec .recipt_iiner_sec p {
+    font-size: 20px;
+}
+.receipt_table_sec table tr  th {
+    font-size: 22px;
+    border-bottom: 2px solid #b8b8b8;
+    text-align: left;
+    padding-bottom: 10px;
+}
+.receipt_table_sec table tr th:last-child {
+    text-align: right;
+}
+.receipt_table_sec table {
+    width: 50%;
+    margin: auto;
+}
+.receipt_table_sec table tbody tr td:last-child {
+    text-align: right;
+}
+.receipt_table_sec table tbody tr td {
+    font-size: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 10px;
+    border-bottom: 2px solid #f5f5f5;
+    padding-bottom: 10px;
+}
+.receipt_table_sec table tr:nth-child(2) td {
+    border-bottom: 2px solid #b8b8b8;
+}
+.receipt_table_sec table tr.total_Sesc td {
+    font-weight: bold;
+}
+.seller_details_sec {
+    width: 50%;
+    margin: auto;
+    margin-top: 30px;
+}
+tr.total_Sesc td {
+    border-bottom: none! important;
+    border-top: 2px solid #b8b8b8;
+}
+.seller_details_sec h4 {
+    margin: 0;
+    color: #898989;
+    font-size: 22px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.seller_details_sec p {
+    color: #898989;
+    font-size: 22px;
+    text-transform: capitalize;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.recipt_btn {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-top: 30px;
+}
+.recipt_btn a {
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+}
+.recipt_btn a:last-child {
+background-color:#898989;
+}
+.seller_details_sec bt:nth-child(3) {
+    margin: 20px 0;
+    display: block;
+}
+</style>

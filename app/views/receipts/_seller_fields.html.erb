@@ -1,0 +1,49 @@
+
+
+
+
+
+<div class="nested-fields">
+<%- if @receipt.seller %>
+<div class="field">
+<%= form.label :sel_name %>
+<%= form.text_field :sel_name,:value => @receipt.seller.name %>
+</div>
+<div class="field">
+<%= form.label :sel_address %>
+<%= form.text_field :sel_address ,:value => @receipt.seller.address %>
+</div>
+<div class="field">
+<%= form.label :sel_vat_id %>
+<%= form.text_field :sel_vat_id ,:value => @receipt.seller.vat_id %>
+</div>
+<div class="field">
+<%= form.label :business_id %>
+<%= form.text_field :sel_business_id,:value => @receipt.seller.business_id %>
+</div>
+
+<%- else %>
+
+<div class="field">
+<%= form.label :sel_name %>
+<%= form.text_field :sel_name %>
+</div>
+
+<div class="field">
+<%= form.label :sel_address %>
+<%= form.text_field :sel_address %>
+</div>
+
+<div class="field">
+<%= form.label :sel_vat_id %>
+<%= form.text_field :sel_vat_id %>
+</div>
+
+<div class="field">
+<%= form.label :business_id %>
+<%= form.text_field :sel_business_id %>
+</div>
+
+<% end %>
+
+</div>

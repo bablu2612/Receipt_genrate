@@ -1,0 +1,188 @@
+<%= form_with(model: receipt,html: {id: 'myForm' }) do |form| %>
+  <% if receipt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+
+      <ul>
+        <% receipt.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <fieldset>
+  <legend>List items:</legend>
+  <%= form.fields_for :items do |item_form| %>
+      <%= render "item_fields", form: item_form %>
+  <% end %>
+  <%= link_to_add_fields "Add list", form, :items %>
+</fieldset>
+
+<br />
+
+<h2>Customer Details</h2>
+    <%= render "customer_fields", form: form %>
+
+<br />
+<h2>Seller Details</h2>
+    <%= render "seller_fields", form: form %>
+
+
+
+  <div class="actions">
+    <%= form.submit  %>
+  </div>
+<% end %>
+
+<script>
+$(document).ready(function(){
+ console.log('here')
+$("#myForm").validate({
+rules: {
+"receipt[cus_name]": {
+required: true
+},
+"receipt[cus_address]": {
+required: true
+},
+"receipt[cus_order_id]": {
+required: true
+},
+"receipt[cus_payment_method]": {
+required: true
+},
+"receipt[sel_name]": {
+required: true
+},
+"receipt[sel_address]": {
+required: true,
+        },
+"receipt[sel_vat_id]": {
+required: true
+},
+"receipt[business_id]": {
+required: true
+},
+"receipt[name]": {
+required: true
+},
+
+
+},
+
+submitHandler: function (form) {
+return true;
+}
+});
+});
+</script>
+
+
+<style>
+.create_recept_sec {
+    width: 60%;
+    margin: auto;
+}
+.create_recept_sec h1 {
+    text-align: center;
+}
+form#myForm .field {
+    width: 48%;
+}
+ form#myForm .field label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+form#myForm .field input {
+    width: 100%;
+    height: 28px;
+    border: 1px solid #ddd;
+}
+.nested-fields .field {
+    padding: 0 10px;
+}
+form#myForm fieldset {
+    border: 1px solid #ddd;
+}
+form#myForm fieldset legend {
+    font-size: 18px;
+}
+form#myForm fieldset  .nested-fields {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+form#myForm fieldset .nested-fields div {
+    flex: 0 0 48%;
+    padding: 0 10px;
+    max-width: 48%;
+}
+form#myForm fieldset .nested-fields div label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+form#myForm fieldset .nested-fields div input {
+    width: 100%;
+    height: 28px;
+    border: 1px solid #ddd;
+}
+.nested-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+h2{
+    margin-top:0px;
+}
+form#myForm fieldset a.add_fields , form#myForm fieldset  a.remove_fields{ 
+    font-size: 18px;
+    text-decoration: none;
+}
+.actions input[type="submit"] {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 15px;
+    border: none;
+    margin-top: 15px;
+}
+label#receipt_name-error {
+    margin-top: 10px;
+    color: red;
+}
+a.remove_fields {
+    margin-top: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+a.remove_fields {
+    margin-top: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+form#myForm fieldset .nested-fields div:last-child {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+form#myForm fieldset a.add_fields {
+    padding: 0 10px;
+}
+.create_recept_sec a:last-child {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 19px;
+    color: #000;
+}
+a:hover{
+    background-color:transparent;
+}
+</style>

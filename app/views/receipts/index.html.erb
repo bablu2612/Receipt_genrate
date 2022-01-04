@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="recipt_sec">
+<div class="recipt_iiner_sec">
+
+<p id="notice"><%= notice %></p>
+
+<h2>Receipts</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col" >Name</th>
+      <th  scope="col"> Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @receipts.each do |receipt| %>
+      <tr>
+        <td><%= receipt.name %></td>
+        <td><%= link_to 'Show', receipt %></td>
+        <td><%= link_to 'Edit', edit_receipt_path(receipt) %></td>
+        <td><%= link_to 'Destroy', receipt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Copy', "/receipt/#{receipt.id}/copy" %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+
+<div class="recipt_btn">
+
+<%= link_to 'New Receipt', new_receipt_path %>
+</div>
+</div>
+<style>
+
+.recipt_btn a {
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.seller_details_sec bt:nth-child(3) {
+    margin: 20px 0;
+    display: block;
+}
+
+
+.recipt_btn {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-top: 30px;
+}
+.recipt_btn a {
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+}
+.recipt_btn a:last-child {
+background-color:#898989;
+}
+.seller_details_sec bt:nth-child(3) {
+    margin: 20px 0;
+    display: block;
+}
+</style>
